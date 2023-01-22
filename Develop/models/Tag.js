@@ -6,7 +6,7 @@ class Tag extends Model {}
 
 Tag.init(
   {
-    tag: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -14,7 +14,7 @@ Tag.init(
   },
 },
   tag_name: {
-    tyoe: DataType.STRING
+    type: DataTypes.STRING
   },
   
   {
