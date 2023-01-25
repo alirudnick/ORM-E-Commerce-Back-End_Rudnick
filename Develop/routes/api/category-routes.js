@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Product } = require('../../models');
+const { Category, Product, Tag } = require('../../models');
 
 
 // The `/api/categories` endpoint
@@ -7,7 +7,12 @@ const { Category, Product } = require('../../models');
 router.get('/', async (req, res) => {
   try{
   // find all categories
-  const categoryData = await Category.findAll();
+  const categoryData = await Category.findAll({
+    include: {
+      model: Product,
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+    },
+  });
     return res.status(200).json(categoryData);
   } catch (err) {
     // 500 status
@@ -20,7 +25,12 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try{
   // find one category by its `id` value
- const categoryData = await Category.findOne(req.params.id);
+ const categoryData = await Category.findByPk(req.params.id, {
+  include: {
+    model: Product,
+    attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+  },
+ });
     return res.status(200).json(categoryData)
   } catch (err) {
     res.status(500).json(err);
@@ -32,8 +42,10 @@ router.get('/:id', async (req, res) => {
 router.post('/',async (req, res) => {
   try{
   // create a new category
-  const categoryData = await Category.create(req.body.name);
-    return res.status(200).json(err);
+  const categoryData = await Category.create({
+    category_name: req.body.category_name,
+  });
+    return res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -53,7 +65,14 @@ router.put('/:id', async (req, res) => {
     },
   }
   );
-    return res.status(200).json(categoryData);
+
+  const getCategoryData = await Category.findByPk(req.params.id, {
+    include: {
+      model: Product,
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+    },
+   });
+    return res.status(200).json(getCategoryData);
 } catch (err) {
   res.status(500).json(err);
 }
@@ -68,7 +87,7 @@ router.delete('/:id', async (req, res) => {
       id: req.params.id,
     },
   });
-    return res.status(200).json(deletedCategory);
+    return res.status(200).json('Category Deleted!');
 } catch (err) {
   res.status(500).json(err);
 }
