@@ -29,7 +29,9 @@ THEN I am able to successfully create, update, and delete data in my database
 
 ## Preview and Link
  
-https://user-images.githubusercontent.com/107882457/214462585-179c43eb-60c3-4e9a-88ab-260e9b419c87.mp4
+
+
+https://user-images.githubusercontent.com/107882457/215294633-939b1ba0-2691-41b5-ab41-da38f77726e7.mp4
 
 https://github.com/alirudnick/ORM-E-Commerce-Back-End_Rudnick
  
