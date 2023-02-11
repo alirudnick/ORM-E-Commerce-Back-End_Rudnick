@@ -29,6 +29,11 @@ THEN I am able to successfully create, update, and delete data in my database
 
 ## Preview and Link
  
+
+
+https://user-images.githubusercontent.com/107882457/215294633-939b1ba0-2691-41b5-ab41-da38f77726e7.mp4
+
+https://github.com/alirudnick/ORM-E-Commerce-Back-End_Rudnick
  
 ## License
 See license in repo
